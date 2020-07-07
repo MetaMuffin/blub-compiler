@@ -1,0 +1,1 @@
+int writeCommand(String a) {}
