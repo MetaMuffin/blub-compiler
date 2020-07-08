@@ -8,8 +8,8 @@ class IO extends ProgramLib {
     ctx.assembler.COMMENT(
         'Print with static contents for "${text.replaceAll("\n", "\\n")}"');
     var text_label = ctx.labelManager.static_text_to_labels(text);
-    ctx.system.sys_write(
-        SLiteral(1), text_label.toDataLabel(), text_label.toLenLabel());
+    ctx.system
+        .write(SLiteral(1), text_label.toDataLabel(), text_label.toLenLabel());
   }
 
   void prep_args_b([S a, S b, S c]) {

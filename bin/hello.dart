@@ -6,7 +6,7 @@ void main() {
     entry: (c) {
       c.assembler.COMMENT('Hello World Program');
       c.io.print_static_literal('Hello World!');
-      c.system.sys_exit(SLiteral(0));
+      c.system.exit(SLiteral(0));
     },
   );
   con.save('out.s');

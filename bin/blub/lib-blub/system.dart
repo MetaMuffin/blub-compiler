@@ -11,6 +11,6 @@ class System extends ProgramLib {
     ctx.assembler.INT(SLiteral(0x80), 'Trigger syscall interrupt');
   }
 
-  void sys_exit(S a) => syscall(SLiteral(1), a);
-  void sys_write(S fd, S inp, S len) => syscall(SLiteral(4), fd, inp, len);
+  void exit(S a) => syscall(SLiteral(1), a);
+  void write(S fd, S inp, S len) => syscall(SLiteral(4), fd, inp, len);
 }

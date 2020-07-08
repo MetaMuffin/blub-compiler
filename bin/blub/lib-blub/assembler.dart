@@ -4,7 +4,7 @@ import 's-values.dart';
 class Assembler extends ProgramLib {
   Assembler(ctx) : super(ctx);
 
-  void MOV(S source, S dest, [String comment]) => ASM(
+  void MOV(S dest, S source, [String comment]) => ASM(
       'mov ${dest.toString()}, ${source.toString()}${optional_comment(comment)}');
 
   void INT(S dnum, [String comment]) =>
