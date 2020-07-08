@@ -1,4 +1,5 @@
 import 'blub/blub.dart';
+import 'blub/lib-blub/globals.dart';
 import 'blub/lib-blub/lib-blub.dart';
 import 'blub/lib-blub/s-values.dart';
 
@@ -11,6 +12,5 @@ void main() {
       sys_exit(SLiteral(0));
     },
   );
-
   con.save('out.s');
 }
