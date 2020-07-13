@@ -1,4 +1,5 @@
 import 'lib-blub.dart';
+import 's-types.dart';
 
 enum StructuresTypes {
   IF,
@@ -8,5 +9,7 @@ enum StructuresTypes {
 }
 
 class Structures extends ProgramLib {
-  Structures(ProgramContext ctx) : super(ctx);
+  Structures(ProgramLibraries ctx) : super(ctx);
+
+  void FUNCTION(VInt condition) {}
 }

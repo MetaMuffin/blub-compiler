@@ -1,5 +1,5 @@
-import 'blub/blub.dart';
 import 'blub/lib-blub/s-values.dart';
+import 'blub/blub.dart';
 
 void main() async {
   var con = Program(
@@ -16,7 +16,7 @@ void main() async {
 
   await con.export();
   await con.save();
-  await con.compile(format: 'elf64');
-  await con.link();
-  await con.run();
+  //await con.compile(format: 'elf64');
+  //await con.link();
+  //await con.run();
 }

@@ -2,25 +2,25 @@ import 'lib-blub.dart';
 import 's-values.dart';
 
 class IO extends ProgramLib {
-  IO(ctx) : super(ctx);
+  IO(ProgramLibraries lib) : super(lib);
 
   void print_static_literal(String text) {
-    ctx.assembler.COMMENT(
+    lib.assembler.COMMENT(
         'Print with static contents for "${text.replaceAll("\n", "\\n")}"');
-    var text_label = ctx.labelManager.static_text_to_labels(text);
-    ctx.system
-        .write(SLiteral(1), text_label.toDataLabel(), text_label.toLenLabel());
+    var text_label = lib.labelManager.static_text_to_labels(text);
+    lib.system.write(SLiteral(lib.context, 1), text_label.toDataLabel(),
+        text_label.toLenLabel());
   }
 
   void prep_args_b([S a, S b, S c]) {
     if (a != null) {
-      ctx.assembler.MOV(SRegister(ERegister.ebx), a, 'Prepare arg 1');
+      lib.assembler.MOV(SRegister(lib, ERegister.ebx), a, 'Prepare arg 1');
     }
     if (b != null) {
-      ctx.assembler.MOV(SRegister(ERegister.ecx), b, 'Prepare arg 2');
+      lib.assembler.MOV(SRegister(lib, ERegister.ecx), b, 'Prepare arg 2');
     }
     if (c != null) {
-      ctx.assembler.MOV(SRegister(ERegister.edx), c, 'Prepare arg 3');
+      lib.assembler.MOV(SRegister(lib, ERegister.edx), c, 'Prepare arg 3');
     }
   }
 }

@@ -4,7 +4,7 @@ import 'lib-blub.dart';
 import 's-values.dart';
 
 class StackManager extends ProgramLib {
-  StackManager(ProgramContext ctx) : super(ctx);
+  StackManager(ProgramLibraries ctx) : super(ctx);
 
   int local_stack_offset;
   int global_stack_offset;

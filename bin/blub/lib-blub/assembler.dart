@@ -10,11 +10,14 @@ class Assembler extends ProgramLib {
   void INT(S dnum, [String comment]) =>
       ASM('int ${dnum.toString()}${optional_comment(comment)}');
 
+  void ADD(S target, S b, [String comment]) => ASM(
+      'add ${target.toString()}, ${b.toString()}${optional_comment(comment)}');
+
   String comment_tabs = '\t\t';
 
-  void DATA(String s) => ctx.program.writeData(s);
-  void ASM(String s) => ctx.program.writeCommand(s);
-  void COMMENT(String c) => ctx.program.writeCommand('; $c');
+  void DATA(String s) => lib.program.writeData(s);
+  void ASM(String s) => lib.program.writeCommand(s);
+  void COMMENT(String c) => lib.program.writeCommand('; $c');
 
   void ASM_l(List<String> sl) {
     for (var s in sl) {

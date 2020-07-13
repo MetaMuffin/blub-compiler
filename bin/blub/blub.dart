@@ -1,33 +1,36 @@
 import 'dart:io';
 import 'lib-blub/lib-blub.dart';
+import 'lib-blub/context.dart';
 
 class Program {
   String text = '';
   String data = '';
-  ProgramContext pctx;
+  ProgramLibraries pctx;
 
   String assemblerFile;
   String relocatableFile;
   String executableFile;
+  bool colorfulOutput = false;
 
   void Function(ProgramContext c) entry;
 
   Program({
+    this.colorfulOutput,
     this.entry,
     this.assemblerFile,
     this.executableFile,
     this.relocatableFile,
   }) {
-    pctx = ProgramContext(this);
+    pctx = ProgramLibraries(this);
     if (!stdout.supportsAnsiEscapes) print('No ansi escape support. :(');
   }
 
   String _success(String s) {
-    return '\033[32;1m${s}\033[0m';
+    return (colorfulOutput) ? '\033[32;1m${s}\033[0m' : s;
   }
 
   String _info(String s) {
-    return '\033[32;1m${s}\033[0m';
+    return (colorfulOutput) ? '\033[32;1m${s}\033[0m' : s;
   }
 
   void _print(String s) {
@@ -36,7 +39,7 @@ class Program {
 
   void export() {
     _print('Exporting...');
-    entry(pctx);
+    entry(ProgramContext(pctx));
     _print(' done\n');
   }
 
@@ -58,7 +61,7 @@ class Program {
     cargs.addAll(args);
     cargs.add(assemblerFile);
 
-    _print(' \$ $compiler ${cargs.join(" ")}');
+    _print('\t\t\$ $compiler ${cargs.join(" ")}');
     var results = await Process.run(compiler, cargs);
     print(results.stderr);
     _print(' ${_success("done")}\n');
@@ -76,7 +79,7 @@ class Program {
     largs.addAll(args);
     largs.add('$relocatableFile');
 
-    _print(' \$ $linker ${largs.join(" ")}');
+    _print('\t\t\$ $linker ${largs.join(" ")}');
     var results = await Process.run(linker, largs);
     print(results.stderr);
     if (setExecutableAttrib) {
@@ -89,7 +92,7 @@ class Program {
     _print(_info('Running...'));
 
     args ??= [];
-    _print('\t \$ ./$executableFile ${args.join("")}\n');
+    _print('\t\t\$ ./$executableFile ${args.join("")}\n');
     var results = await Process.run('./$executableFile', args);
     print(results.stdout);
     print(results.stderr);

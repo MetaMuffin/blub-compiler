@@ -9,3 +9,5 @@ build/
 doc/api/
 
 /out.s
+/out.o
+/out
